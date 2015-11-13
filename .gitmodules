@@ -1,3 +1,6 @@
 [submodule "jumpserver-offical"]
 	path = jumpserver
 	url = https://github.com/ibuler/jumpserver
+[submodule "jumpserver-hhding"]
+	path = jumpserver-hhding
+	url = https://github.com/ibuler/jumpserver
