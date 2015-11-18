@@ -19,8 +19,8 @@ echo no | python manage.py syncdb
 rm -f /var/lib/ldap/{__db.*,alock,dn2id.bdb,id2entry.bdb,log.0000000001,objectClass.bdb}
 /etc/init.d/slapd start
 
+cp /tmp/docker-entrypoint.sh /
 cd /tmp/slapd/
-cp docker-entrypoint.sh /
 ldapmodify -Y EXTERNAL -H ldapi:/// < rootpw.ldif
 ldapadd -x -w secret234 -D "cn=admin,dc=jumpserver,dc=org" -f base.ldif
 ldapadd -x -w secret234 -D "cn=admin,dc=jumpserver,dc=org" -f group.ldif
