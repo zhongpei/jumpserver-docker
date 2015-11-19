@@ -5,6 +5,13 @@ APP_DIR="/opt/jumpserver"
 
 echo 'slapd	slapd/domain	string	jumpserver.org' | debconf-set-selections
 echo 'slapd	shared/organization	string	jumpserver' | debconf-set-selections
+cat > /etc/apt/sources.list <<EOF
+deb http://ap-southeast-1.ec2.archive.ubuntu.com/ubuntu/ trusty main
+deb http://ap-southeast-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates main
+deb http://ap-southeast-1.ec2.archive.ubuntu.com/ubuntu/ trusty universe
+deb http://ap-southeast-1.ec2.archive.ubuntu.com/ubuntu/ trusty-updates universe
+EOF
+
 apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install $DEPENDS
 pip install django-uuidfield
 
