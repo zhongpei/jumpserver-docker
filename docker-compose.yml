@@ -1,0 +1,20 @@
+db:
+	image: mysql
+
+#ldap:
+#	image: ldap
+#
+#websocket:
+#	image: websocket
+
+jumpserver:
+	image: jumpserver-docker
+	ports:
+		- "60010:22"
+		- "80:80"
+		- "389:389"
+	links:
+		- db
+		#- ldap
+		#- websocket
+
