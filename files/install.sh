@@ -16,7 +16,6 @@ apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install $DEPENDS
 pip install django-uuidfield
 
 cd $APP_DIR
-mkdir -p logs/{connect,exec_cmds} && chmod -R 777 logs && chmod -R +t logs
 chmod +x *.py *.sh
 cp docs/zzjumpserver.sh /etc/profile.d/
 

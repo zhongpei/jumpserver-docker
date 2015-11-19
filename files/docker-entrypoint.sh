@@ -20,6 +20,8 @@ sed -i \
 chown -R openldap /var/lib/ldap
 
 cd /opt/jumpserver
+mkdir -p logs/{connect,exec_cmds} && chmod -R 777 logs && chmod -R +t logs
+
 sleep 5
 echo no | python manage.py syncdb
 
