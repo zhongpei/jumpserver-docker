@@ -1,5 +1,12 @@
 db:
-	image: mysql
+  image: mysql
+  environment:
+    MYSQL_DATABASE: jumpserver
+    MYSQL_USER: jumpserver
+    MYSQL_PASSWORD: twugHigeu
+    MYSQL_ROOT_PASSWORD: BawdEshFau
+  volumes:
+    - /data/mysql:/var/lib/mysql
 
 #ldap:
 #	image: ldap
@@ -7,14 +14,14 @@ db:
 #websocket:
 #	image: websocket
 
-jumpserver:
-	image: jumpserver-docker
-	ports:
-		- "60010:22"
-		- "80:80"
-		- "389:389"
-	links:
-		- db
-		#- ldap
-		#- websocket
+#jumpserver:
+#	image: jumpserver-docker
+#	ports:
+#		- "60010:22"
+#		- "80:80"
+#		- "389:389"
+#	links:
+#		- db
+#		#- ldap
+#		#- websocket
 

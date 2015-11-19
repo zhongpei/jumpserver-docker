@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DEPENDS="nodejs python-django ssh python-paramiko python-ldap python-ecdsa python-django-shortuuidfield python-psutil slapd ldapscripts python-pycryptopp python-pip"
+DEPENDS="nodejs python-django ssh python-paramiko python-ldap python-ecdsa python-django-shortuuidfield python-psutil slapd ldapscripts python-pycryptopp python-pip python-mysqldb"
 APP_DIR="/opt/jumpserver"
 
 echo 'slapd	slapd/domain	string	jumpserver.org' | debconf-set-selections
