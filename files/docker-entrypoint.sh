@@ -6,12 +6,11 @@
 #ldapmodify -Y EXTERNAL -H ldapi:/// < rootpw.ldif
 
 MAIL_USER=${MAIL_SMTP_USER%:*}
-MYSQL_PASSWORD=${MAIL_SMTP_USER#*:}
+MAIL_PASS=${MAIL_SMTP_USER#*:}
 
 sed -i \
     -e 's/^host = 127.0.0.1/host = mysql/g' \
     -e 's/^user = jumpserver/user = '$MYSQL_USER'/g' \
-    -e 's/^password = mysql234/password = '$MYSQL_PASSWORD'/g' \
     -e 's/^password = mysql234/password = '$MYSQL_PASSWORD'/g' \
     -e 's/^email_host = .*/email_host = mail/g' \
     -e 's/^email_host_user = .*/email_host_user = '$MAIL_USER'/g' \
