@@ -17,9 +17,10 @@ sed -i \
     -e 's/^email_host_password = .*/email_host_password = '$MAIL_PASS'/g' \
     /opt/jumpserver/jumpserver.conf
 
-chown -r openldap /var/lib/ldap
+chown -R openldap /var/lib/ldap
 
 cd /opt/jumpserver
+sleep 5
 echo no | python manage.py syncdb
 
 python manage.py runserver 0.0.0.0:80 &
