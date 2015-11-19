@@ -13,8 +13,7 @@ mkdir -p logs/{connect,exec_cmds} && chmod -R 777 logs
 chmod +x *.py *.sh
 cp docs/zzjumpserver.sh /etc/profile.d/
 
-# Fix mysql to sqlite
-echo no | python manage.py syncdb
+#echo no | python manage.py syncdb
 
 rm -f /var/lib/ldap/{__db.*,alock,dn2id.bdb,id2entry.bdb,log.0000000001,objectClass.bdb}
 /etc/init.d/slapd start

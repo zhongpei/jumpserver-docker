@@ -2,6 +2,8 @@
 
 /etc/init.d/ssh start
 /etc/init.d/slapd start
+#hashed_ldap_passwd=$(/usr/sbin/slappasswd -s $LDAP_ADMIN_PASS)
+#ldapmodify -Y EXTERNAL -H ldapi:/// < rootpw.ldif
 
 cd /opt/jumpserver
 

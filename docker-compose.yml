@@ -8,20 +8,31 @@ db:
   volumes:
     - /data/mysql:/var/lib/mysql
 
-#ldap:
-#	image: ldap
-#
-#websocket:
-#	image: websocket
+mail:
+  image: catatnight/postfix
+  environment:
+    MAILDOMAIN: ops.vobile.org
+    SMTP_USER: vobile:EwbIjfiv
 
-#jumpserver:
-#	image: jumpserver-docker
-#	ports:
-#		- "60010:22"
-#		- "80:80"
-#		- "389:389"
-#	links:
-#		- db
-#		#- ldap
-#		#- websocket
+jumpserver:
+  image: jumpserver
+  ports:
+  	- "60010:22"
+  	- "80:80"
+  	- "389:389"
+  links:
+  	- db:mysql
+    - mail
+
+  environment:
+    MYSQL_DATABASE: jumpserver
+    MYSQL_USER: jumpserver
+    MYSQL_PASSWORD: twugHigeu
+    MAIL_SMTP_USER: vobile:EwbIjfiv
+    LDAP_ADMIN_PASS: MelRikjas
+
+  volumes:
+    - /data/ldap:/var/lib/ldap/
+    - /data/logs:/opt/jumpserver/logs
+    - /data/jumpserver/jumpserver.conf:/opt/jumpserver/jumpserver.conf
 
