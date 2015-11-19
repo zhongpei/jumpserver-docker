@@ -11,19 +11,18 @@ db:
 mail:
   image: catatnight/postfix
   environment:
-    MAILDOMAIN: ops.vobile.org
-    SMTP_USER: vobile:EwbIjfiv
+    maildomain: ops.vobile.org
+    smtp_user: vobile:EwbIjfiv
 
 jumpserver:
-  image: jumpserver
+  image: hhding/jumpserver-docker
   ports:
-  	- "60010:22"
-  	- "80:80"
-  	- "389:389"
+    - "60010:22"
+    - "80:80"
+    - "389:389"
   links:
-  	- db:mysql
+    - db:mysql
     - mail
-
   environment:
     MYSQL_DATABASE: jumpserver
     MYSQL_USER: jumpserver
@@ -34,5 +33,4 @@ jumpserver:
   volumes:
     - /data/ldap:/var/lib/ldap/
     - /data/logs:/opt/jumpserver/logs
-    - /data/jumpserver/jumpserver.conf:/opt/jumpserver/jumpserver.conf
 
