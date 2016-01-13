@@ -1,3 +1,0 @@
-dn: olcDatabase={1}hdb,cn=config
-replace: olcRootPW
-olcRootPW: {SSHA}ZEYLKCfKfZrGSFs6c6FfG9JhaNO9uUxP
