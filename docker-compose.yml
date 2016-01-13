@@ -1,5 +1,7 @@
 db:
   image: mysql
+  ports:
+    - "127.0.0.1:3306:3306"
   environment:
     MYSQL_DATABASE: jumpserver
     MYSQL_USER: jumpserver
@@ -16,22 +18,29 @@ mail:
     smtp_user: vobile:EwbIjfiv
 
 jumpserver:
-  image: hhding/jumpserver-docker
+  build: .
   ports:
     - "60010:22"
-    - "80:80"
-    - "389:389"
+    - "8080:80"
   links:
     - db:mysql
     - mail
-  environment:
-    MYSQL_DATABASE: jumpserver
-    MYSQL_USER: jumpserver
-    MYSQL_PASSWORD: twugHigeu
-    MAIL_SMTP_USER: vobile:EwbIjfiv
-    LDAP_ADMIN_PASS: MelRikjas
-
+  command: python manage.py runserver 0.0.0.0:80
   volumes:
-    - /data/ldap:/var/lib/ldap/
     - /data/logs:/opt/jumpserver/logs
+    - /data/jumpserver/keys:/opt/jumpserver/keys/
+    - ./jumpserver.conf:/opt/jumpserver/jumpserver.conf:ro
 
+
+jumpserver-websocket:
+  build: .
+  ports:
+    - "3000:3000"
+  links:
+    - db:mysql
+    - mail
+  command: python run_websocket.py
+  volumes:
+    - /data/logs:/opt/jumpserver/logs
+    - /data/jumpserver/keys:/opt/jumpserver/keys/
+    - ./jumpserver.conf:/opt/jumpserver/jumpserver.conf:ro
